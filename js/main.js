@@ -190,6 +190,8 @@ function initializeContactForm() {
 
 // Certificate Modal functionality
 function initializeCertificateModal() {
+    // Certificates should not be clickable anymore; disable modal behavior.
+    return;
     const modal = document.getElementById('certificate-modal');
     const modalImg = document.getElementById('modal-img');
     const closeBtn = document.getElementById('modal-close');
