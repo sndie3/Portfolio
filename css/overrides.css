@@ -1,2 +1,26 @@
 .certificate-card{cursor:default}
 .certificate-card img,.certificate-img{pointer-events:none}
+
+/* Fix and refine the 'More Projects Coming Soon' box */
+/* Make Coming Soon card match project-card sizing and center text */
+.project-grid .coming-soon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem; /* match .project-card */
+  border-radius: 20px; /* match .project-card */
+  background: var(--secondary-bg); /* subtle differentiation */
+  border: 2px dashed var(--border-color); /* gentle emphasis */
+}
+.project-grid .coming-soon p{
+  margin: 0;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* Justify text in About section paragraphs */
+.about-text p{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}

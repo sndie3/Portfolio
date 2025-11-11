@@ -139,52 +139,45 @@ function initializeProjectFilters() {
 // Contact form handling
 function initializeContactForm() {
     const form = document.getElementById('contact-form');
+    if (!form) return;
     const submitBtn = form.querySelector('.submit-btn');
-    const originalBtnText = submitBtn.innerHTML;
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : '';
 
-    emailjs.init("service_8qg4j6p");
-
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const formData = {
-            name: form.name.value,
-            email: form.email.value,
-            subject: form.subject.value,
-            message: form.message.value
-        };
+        const name = form.name.value;
+        const email = form.email.value;
+        const subject = form.subject.value;
+        const message = form.message.value;
 
-        if (!formData.name || !formData.email || !formData.subject || !formData.message) {
+        if (!name || !email || !subject || !message) {
             alert('Please fill in all fields');
             return;
         }
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
+        if (!emailRegex.test(email)) {
             alert('Please enter a valid email address');
             return;
         }
 
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
-
-        try {
-            await emailjs.send("service_6zgn7ww", "template_ziwkefk", {
-                from_name: formData.name,
-                from_email: formData.email,
-                subject: formData.subject,
-                message: formData.message,
-                to_email: "sandiegoles8@gmail.com"
-            });
-
-            alert('Message sent successfully!');
-            form.reset();
-        } catch (error) {
-            alert('Failed to send message. Please try again later.');
+        if (submitBtn) {
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Opening mail app...';
+            submitBtn.disabled = true;
         }
 
-        submitBtn.innerHTML = originalBtnText;
-        submitBtn.disabled = false;
+        const to = 'sandiegoles8@gmail.com';
+        const body = 'Name: ' + name + '\r\n' + 'Email: ' + email + '\r\n\r\n' + message;
+        const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(mailto, '_self');
+
+        setTimeout(() => {
+            if (submitBtn) {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        }, 500);
     });
 }
 
