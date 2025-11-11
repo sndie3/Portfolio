@@ -19,21 +19,21 @@
           <p>Cebu, Philippines</p>
         </div>
       </div>
-      <form id="contact-form" class="contact-form">
+      <form id="contact-form" class="contact-form" autocomplete="on">
         <div class="form-group">
-          <input type="text" id="name" name="name" required>
+          <input type="text" id="name" name="name" autocomplete="name" required>
           <label for="name">Name</label>
         </div>
         <div class="form-group">
-          <input type="email" id="email" name="email" required>
+          <input type="email" id="email" name="email" autocomplete="email" required>
           <label for="email">Email</label>
         </div>
         <div class="form-group">
-          <input type="text" id="subject" name="subject" required>
+          <input type="text" id="subject" name="subject" autocomplete="on" required>
           <label for="subject">Subject</label>
         </div>
         <div class="form-group">
-          <textarea id="message" name="message" required></textarea>
+          <textarea id="message" name="message" autocomplete="on" required></textarea>
           <label for="message">Message</label>
         </div>
         <button type="submit" class="submit-btn">
@@ -49,4 +49,4 @@
 <script>
   (function() {
   })();
-</script> 
+</script>

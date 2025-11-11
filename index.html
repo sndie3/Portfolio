@@ -6,6 +6,14 @@
   <title>Portfolio</title>
   <link rel="stylesheet" href="css/style.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    html { scroll-behavior: smooth; scrollbar-width: none; -ms-overflow-style: none; overflow-y: auto; }
+    html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; }
+    body { scrollbar-width: none; -ms-overflow-style: none; overflow-y: auto; }
+    .scroll-top { position: fixed; right: 20px; bottom: 20px; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--primary-color); color: #fff; text-decoration: none; box-shadow: 0 6px 16px rgba(0,0,0,.2); opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .3s ease; z-index: 1100; }
+    .scroll-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+    .navbar.scrolled { box-shadow: 0 4px 12px var(--nav-shadow); }
+  </style>
 </head>
 <body>
   <div class="background-animation">
@@ -30,6 +38,7 @@
         <a class="nav-link" href="#projects">Projects</a>
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#resume">Resume</a>
+        <a class="nav-link" href="#certificates">Certificates</a>
         <a class="nav-link" href="#contact">Contact</a>
       </div>
     </div>
@@ -42,6 +51,9 @@
   <div include-html="sections/certificates.html"></div>
   <div include-html="sections/contact.html"></div>
   <div include-html="sections/footer.html"></div>
+
+  <!-- Scroll to Top Button -->
+  <a href="#" class="scroll-top" aria-label="Scroll to top">▲</a>
 
   <script>
   document.addEventListener('DOMContentLoaded', async function() {

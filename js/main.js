@@ -57,22 +57,25 @@ function initializeScrollEffects() {
             }
         });
 
-        if (currentScroll > 500) {
-            scrollTopBtn.classList.add('show');
-        } else {
-            scrollTopBtn.classList.remove('show');
+        if (scrollTopBtn) {
+            if (currentScroll > 500) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
         }
 
         lastScroll = currentScroll;
     });
-
-    scrollTopBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
-    });
+    }
 }
 
 // Typing effect for hero section
@@ -233,7 +236,11 @@ function initializeCertificateModal() {
         isDragging = false;
     });
 
+    // Only intercept wheel events when the modal is open
     window.addEventListener('wheel', (e) => {
+        if (modal.style.display !== 'flex') {
+            return; // allow normal page scrolling
+        }
         e.preventDefault();
         const delta = e.deltaY;
         if (delta > 0) {
@@ -242,7 +249,7 @@ function initializeCertificateModal() {
             scale = Math.min(3, scale + 0.1);
         }
         modalImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-    });
+    }, { passive: false });
 
     document.addEventListener('keydown', (e) => {
         if (modal.style.display === 'flex') {
